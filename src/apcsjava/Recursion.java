@@ -5,16 +5,28 @@ public class Recursion {
 	//assumes non-negative integer input
 	//computes start!...but not yet
 	public int factorial(int start) {
-		if(start == 1){
+		if(start == 0){
+			// base case
 			return 1;
 		}else{
+			// recursive case
 			return (start * factorial(start- 1));
 		}
 	}
 	
 	//returns nCk (combinations/Pascal's triangle entry...do not use factorial)
 	public int choose(int n, int k) {
-		return 1;
+		// special case 1
+		if(n == 0 && k != 0){
+			return 0;
+		}
+		// special case 2 and 3
+		if(k == 0|| n == k){
+			return 1;
+		}else{
+			// recursive case
+			return choose(n-1,k-1) + choose(n-1, k);
+		}
 	}
 	
 	//assumes positive integer input
@@ -33,14 +45,35 @@ public class Recursion {
 	}
 	
 	public String reverse(String in) {
-		return null; //must be changed, but to what?
+		// each time it moves one term to the back
+		if(in.length() <= 1){
+			return in;
+		}else{
+			return (reverse(in.substring(1)) + in.charAt(0));
+		}
 	}
 	
-	public String lookNSay(String input, int steps) {//returns the first 'steps' strings in a look-and-say sequence that begins with 'input'
+	public String lookNSay(String input, int steps) {
+
+		//returns the first 'steps' strings in a look-and-say sequence that begins with 'input'
 		return null;
 	}
 
-	public String lookNSayHelp(String in) {//the recursive function used to do look-and-say
+	public String lookNSayHelp(String in) {
+		String pool = in;
+		char a = in.charAt(0);
+		int search = 1;
+		while(pool.charAt(search) == a){
+			search++;
+		}
+
+
+
+
+
+
+
+		//the recursive function used to do look-and-say
 		return null;
 	}
 
@@ -59,5 +92,11 @@ public class Recursion {
 		System.out.println("and longstring.substring(11) gives me " + longstring.substring(11));
 		//the single slash, \, lets you use quote marks in strings
 		System.out.println("Also, longstring.startsWith(\"I g\") returns " + longstring.startsWith("I g"));
+
+
+		System.out.println(whoa.reverse("tattarrattat"));
+
+		System.out.println(whoa.choose(10,2));
+
 	}
 }
