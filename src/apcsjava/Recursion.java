@@ -1,7 +1,5 @@
 package apcsjava;
 
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Stream;
 
 public class Recursion {
 
@@ -57,29 +55,35 @@ public class Recursion {
 	}
 	
 	public String lookNSay(String input, int steps) {
-
-		//returns the first 'steps' strings in a look-and-say sequence that begins with 'input'
-		return null;
+		for (int i = 0; i < steps; i++) {
+			input = lookNSayHelp(input);
+		}
+		return input;
 	}
 
 	public String lookNSayHelp(String in) {
-		// finish making more efficient
 		StringBuilder out = new StringBuilder();
-
 		char repeat = in.charAt(0);
 		in = in.substring(1);
-		int times = 1;
+		int numberOfOccurrences = 1;
 
-		for (char a : in.toCharArray()) {
-			if(a != repeat){
-				out.append(times + "" + repeat);
-				times =1;
+		char[] charArray = in.toCharArray();
+		if(charArray.length == 0){
+			return out.append(numberOfOccurrences).append(repeat).toString();
+		}
+		for (int i = 0; i < charArray.length; i++) {
+			char a = charArray[i];
+			if (a != repeat) {
+				out.append(numberOfOccurrences).append(repeat);
+				numberOfOccurrences = 1;
 				repeat = a;
-			}else{
-				times += 1;
+			} else {
+				numberOfOccurrences += 1;
 			}
 
-
+			if(i == charArray.length -1){
+				out.append(numberOfOccurrences).append(a);
+			}
 		}
 
 		return out.toString();
@@ -106,8 +110,19 @@ public class Recursion {
 
 		System.out.println(whoa.choose(10,2));
 
+		System.out.println(whoa.lookNSay("Hello",1));
+		System.out.println(whoa.lookNSay("Hello",2));
+		System.out.println(whoa.lookNSay("Hello",3));
+		System.out.println(whoa.lookNSay("Hello",30));
 
-		System.out.println(whoa.lookNSayHelp("HEELLLLO"));
+		System.out.println(whoa.lookNSay("1",1));
+		System.out.println(whoa.lookNSay("1",2));
+		System.out.println(whoa.lookNSay("1",3));
+		System.out.println(whoa.lookNSay("1",5));
+
+
+
+
 
 	}
 }
