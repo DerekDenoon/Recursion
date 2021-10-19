@@ -1,5 +1,8 @@
 package apcsjava;
 
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
+
 public class Recursion {
 
 	//assumes non-negative integer input
@@ -60,21 +63,26 @@ public class Recursion {
 	}
 
 	public String lookNSayHelp(String in) {
-		String pool = in;
-		char a = in.charAt(0);
-		int search = 1;
-		while(pool.charAt(search) == a){
-			search++;
+		// finish making more efficient
+		StringBuilder out = new StringBuilder();
+
+		char repeat = in.charAt(0);
+		in = in.substring(1);
+		int times = 1;
+
+		for (char a : in.toCharArray()) {
+			if(a != repeat){
+				out.append(times + "" + repeat);
+				times =1;
+				repeat = a;
+			}else{
+				times += 1;
+			}
+
+
 		}
 
-
-
-
-
-
-
-		//the recursive function used to do look-and-say
-		return null;
+		return out.toString();
 	}
 
 	public static void main(String[] args) {
@@ -97,6 +105,9 @@ public class Recursion {
 		System.out.println(whoa.reverse("tattarrattat"));
 
 		System.out.println(whoa.choose(10,2));
+
+
+		System.out.println(whoa.lookNSayHelp("HEELLLLO"));
 
 	}
 }
