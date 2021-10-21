@@ -1,5 +1,9 @@
+/*
+Student: Denoon, Derek
+Date: 10-21-21
+Assignment: Recursion
+ */
 package apcsjava;
-
 
 public class Recursion {
 
@@ -35,12 +39,15 @@ public class Recursion {
 	public void collatz(int start) { 		//I wonder what this does
 		if (start != 1) {
 			System.out.println(start);
-			if (start % 2 == 0) { //the % operator returns a remainder.  22 % 3 = 1, for example.
+			if (start % 2 == 0) {//the % operator returns a remainder.  22 % 3 = 1, for example.
+				// recursive case 1
 				collatz(start / 2);
 			} else {
+				// recursive case 2
 				collatz(3*start + 1);
 			}
 		} else {
+			// base case
 			System.out.println("1. Once again.");
 		}
 	}
@@ -48,13 +55,16 @@ public class Recursion {
 	public String reverse(String in) {
 		// each time it moves one term to the back
 		if(in.length() <= 1){
+			// base case
 			return in;
 		}else{
+			// recursive case
 			return (reverse(in.substring(1)) + in.charAt(0));
 		}
 	}
 	
 	public String lookNSay(String input, int steps) {
+		// runs look and say help steps times and return the results
 		for (int i = 0; i < steps; i++) {
 			input = lookNSayHelp(input);
 		}
@@ -62,26 +72,37 @@ public class Recursion {
 	}
 
 	public String lookNSayHelp(String in) {
+		// stringbuilder to return
 		StringBuilder out = new StringBuilder();
+		// the char that is repeated
 		char repeat = in.charAt(0);
+		// skip char at 1
 		in = in.substring(1);
+		// number of times its repeated
 		int numberOfOccurrences = 1;
 
+
+		// array of chars from in
 		char[] charArray = in.toCharArray();
+		// if the length is 0 it uses the stored values to output
 		if(charArray.length == 0){
 			return out.append(numberOfOccurrences).append(repeat).toString();
 		}
+		// goes through the array and checks if a char is repeating
 		for (int i = 0; i < charArray.length; i++) {
 			char a = charArray[i];
 			if (a != repeat) {
+				// if not repeat append number of occurrence and char then set occurrences to 1 and repeat to the checked var
 				out.append(numberOfOccurrences).append(repeat);
 				numberOfOccurrences = 1;
 				repeat = a;
 			} else {
+				// if repeat add an occurrence
 				numberOfOccurrences += 1;
 			}
 
 			if(i == charArray.length -1){
+				// if it reaches the end it appends the number of occurrences and the chars
 				out.append(numberOfOccurrences).append(a);
 			}
 		}
@@ -110,15 +131,11 @@ public class Recursion {
 
 		System.out.println(whoa.choose(10,2));
 
-		System.out.println(whoa.lookNSay("Hello",1));
-		System.out.println(whoa.lookNSay("Hello",2));
-		System.out.println(whoa.lookNSay("Hello",3));
-		System.out.println(whoa.lookNSay("Hello",30));
 
-		System.out.println(whoa.lookNSay("1",1));
-		System.out.println(whoa.lookNSay("1",2));
-		System.out.println(whoa.lookNSay("1",3));
-		System.out.println(whoa.lookNSay("1",5));
+
+		System.out.println(whoa.lookNSay("22",5));
+		System.out.println(whoa.lookNSay("car",5));
+
 
 
 
